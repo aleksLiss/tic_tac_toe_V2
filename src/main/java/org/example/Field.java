@@ -1,40 +1,55 @@
 package org.example;
 
 public class Field {
+    private static PositionsPlayer[] Field = new PositionsPlayer[9];
 
-    private static String [][] Field = new String[3][3];
-
-    public static void setPosition(int position, String figure){
-       switch (position){
-           case 1:
-               Field[0][0] = figure;
-               break;
-           case 2:
-               Field[0][1] = figure;
-               break;
-           case 3:
-               Field[0][2] = figure;
-               break;
-           case 4:
-               Field[1][0] = figure;
-               break;
-           case 5:
-               Field[1][1] = figure;
-               break;
-           case 6:
-               Field[1][2] = figure;
-               break;
-           case 7:
-               Field[2][0] = figure;
-               break;
-           case 8:
-               Field[2][1] = figure;
-               break;
-           case 9:
-               Field[2][2] = figure;
-               break;
-           default:
-               System.out.println(Messages.ERROR_INPUT_POSITION.getMsg());
-       }
+    public static void inputPosition(int position, PositionsPlayer figure) {
+        if (isEmptyPosition(position)) {
+            Field[position] = figure;
+        } else {
+            System.out.println(Messages.ERROR_EMPTY_POSITION.getMsg());
+        }
     }
+
+    private static boolean isEmptyPosition(int position) {
+        return Field[position] == null;
+    }
+
+    public boolean isEmptyField(){
+        for (PositionsPlayer pos: Field){
+            if(pos == null){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isWin() {
+        int[][] arrOfWinsPositions = WinsPositions.WinsPositions;
+        boolean flag = false;
+        for (int[] pos : arrOfWinsPositions) {
+            int a = pos[0];
+            int b = pos[1];
+            int c = pos[2];
+            if (Field[a].equals(Field[b]) && Field[b].equals(Field[c]) && Field[c].equals(Field[a])) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    public void viewField() {
+        int counter = 0;
+        System.out.println("------------------------");
+        for (PositionsPlayer s : Field) {
+            System.out.print("| " + s + " |");
+            counter++;
+            if (counter % 3 == 0) {
+                System.out.println();
+                System.out.println("------------------------");
+            }
+        }
+    }
+
+
 }
+

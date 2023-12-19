@@ -1,6 +1,8 @@
 package org.example;
 
 public enum PositionsPlayer {
-    X,
-    O,
+    X, //Player 1
+
+    O; //Player 2
+
 }

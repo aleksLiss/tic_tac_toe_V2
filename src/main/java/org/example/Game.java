@@ -10,9 +10,3 @@ public class Game {
 }
 
 
-
-class TestGame{
-    public static void main(String[] args) {
-        new Game().run();
-    }
-}

@@ -22,14 +22,15 @@ public class ConsoleInput {
     public static Integer getPosition(){
         System.out.println(Messages.INPUT_POSITION.getMsg());
         Integer position = null;
-        try (var scanner = new Scanner(System.in)){
-            String result = scanner.nextLine();
-            if (isNumeric(result)){
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            String result = bufferedReader.readLine();
+            if(isNumeric(result)){
                 position = Integer.valueOf(result);
             }else {
                 System.out.println(Messages.ERROR_INPUT_POSITION.getMsg());
             }
-        }catch (InputMismatchException e){
+        }catch (IOException e){
             System.out.println(e.getMessage());
         }
         return position;

@@ -1,6 +1,6 @@
 package org.example;
 
-public class WinPositions {
+public class WinsPositions {
 
     public static final int [][] WinsPositions = {
             {0, 1, 2},
