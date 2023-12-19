@@ -1,18 +1,24 @@
-package org.example;
+package org.example.model;
+
+import org.example.exceptions.EmptyPositionException;
 
 public class Field {
     private static PositionsPlayer[] Field = new PositionsPlayer[9];
 
-    public static void inputPosition(int position, PositionsPlayer figure) {
-        if (isEmptyPosition(position)) {
+    public static void inputPosition(int position, PositionsPlayer figure){
+        try {
+            EmptyPosition(position);
             Field[position] = figure;
-        } else {
-            System.out.println(Messages.ERROR_EMPTY_POSITION.getMsg());
+        }catch (EmptyPositionException e){
+            System.out.println(e.getMessage());
         }
+
     }
 
-    private static boolean isEmptyPosition(int position) {
-        return Field[position] == null;
+    private static void EmptyPosition(int position) throws EmptyPositionException{
+        if(Field[position] != null){
+            throw new EmptyPositionException(Messages.EMPTY_POSITION_EX.getMsg());
+        }
     }
 
     public boolean isEmptyField(){
@@ -37,15 +43,15 @@ public class Field {
         return flag;
     }
 
-    public void viewField() {
+    public static void viewField() {
         int counter = 0;
-        System.out.println("------------------------");
+        System.out.println(Messages.LINE.getMsg());
         for (PositionsPlayer s : Field) {
             System.out.print("| " + s + " |");
             counter++;
             if (counter % 3 == 0) {
                 System.out.println();
-                System.out.println("------------------------");
+                System.out.println(Messages.LINE.getMsg());
             }
         }
     }

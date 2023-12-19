@@ -1,25 +1,18 @@
 package org.example;
 
+import org.example.exceptions.EmptyPositionException;
+import org.example.model.Field;
+import org.example.model.Game;
+import org.example.model.Player;
+import org.example.model.PositionsPlayer;
+
 public class ConsoleRunner {
-    public void run() {
+    public static void main(String[] args) throws EmptyPositionException{
 
-        Player p1 = new Player(PositionsPlayer.X);
-        Player p2 = new Player(PositionsPlayer.O);
-        Field f = new Field();
-
-        f.viewField();
-        p1.go();
-        f.viewField();
-        p2.go();
-        f.viewField();
-
+        Game g = new Game();
+        g.run();
     }
 }
 
 
 
-class Test{
-    public static void main(String[] args) {
-
-    }
-}
