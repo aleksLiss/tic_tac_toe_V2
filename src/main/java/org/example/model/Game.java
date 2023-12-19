@@ -12,21 +12,24 @@ public class Game {
         Player p1 = new Player(PositionsPlayer.X);
         Player p2 = new Player(PositionsPlayer.O);
 
-
-        p1.go(ConsoleInput.getPosition());
-        p2.go(ConsoleInput.getPosition());
-//        Field.viewField();
-//        p1.go(ConsoleInput.getPosition());
-//        p2.go(ConsoleInput.getPosition());
-//        Field.viewField();
-//        p1.go(ConsoleInput.getPosition());
-//        p2.go(ConsoleInput.getPosition());
-//        Field.viewField();
-//        p1.go(ConsoleInput.getPosition());
-//        p2.go(ConsoleInput.getPosition());
+        while (Field.isEmptyField()){
+            p1.go(ConsoleInput.getPosition());
+            Field.isWin();
+            p2.go(ConsoleInput.getPosition());
+            Field.isWin();
+            Field.viewField();
+        }
 
     }
 
 }
 
 
+class Test{
+    public static void main(String[] args) {
+        Integer a = null;
+        Integer b = null;
+
+        System.out.println(a.equals(b));
+    }
+}

@@ -21,7 +21,7 @@ public class Field {
         }
     }
 
-    public boolean isEmptyField(){
+    public static boolean isEmptyField(){
         for (PositionsPlayer pos: Field){
             if(pos == null){
                 return true;
@@ -29,13 +29,13 @@ public class Field {
         }
         return false;
     }
-    public boolean isWin() {
+    public static boolean isWin() {
         int[][] arrOfWinsPositions = WinsPositions.WinsPositions;
         boolean flag = false;
         for (int[] pos : arrOfWinsPositions) {
-            int a = pos[0];
-            int b = pos[1];
-            int c = pos[2];
+            Integer a = pos[0];
+            Integer b = pos[1];
+            Integer c = pos[2];
             if (Field[a].equals(Field[b]) && Field[b].equals(Field[c]) && Field[c].equals(Field[a])) {
                 flag = true;
             }
@@ -57,5 +57,10 @@ public class Field {
     }
 
 
+    //ovverride equals method: if this and obj = null, or this/obj = null -> return false, else -> return true
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
 

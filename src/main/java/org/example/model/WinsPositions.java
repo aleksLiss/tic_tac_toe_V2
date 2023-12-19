@@ -1,6 +1,10 @@
 package org.example.model;
 
-public class WinsPositions {
+public enum WinsPositions {
+    ;
+
+    WinsPositions() {
+    }
 
     public static final int [][] WinsPositions = {
             {0, 1, 2},
