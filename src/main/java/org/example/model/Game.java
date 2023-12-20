@@ -14,9 +14,7 @@ public class Game {
 
         while (Field.isEmptyField()){
             p1.go(ConsoleInput.getPosition());
-            Field.isWin();
             p2.go(ConsoleInput.getPosition());
-            Field.isWin();
             Field.viewField();
         }
 
@@ -24,12 +22,3 @@ public class Game {
 
 }
 
-
-class Test{
-    public static void main(String[] args) {
-        Integer a = null;
-        Integer b = null;
-
-        System.out.println(a.equals(b));
-    }
-}

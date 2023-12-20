@@ -12,18 +12,21 @@ public class ConsoleInput {
     public static Integer getPosition() {
         System.out.println(Messages.INPUT_POSITION.getMsg());
         Integer position = null;
+        while (true){
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             String result = bufferedReader.readLine();
             try {
                 correctInputOfPosition(result);
                 position = Integer.valueOf(result);
+                break;
             } catch (PositionException e) {
                 System.out.println(e.getMessage());
             }
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
         }
 
         return position;
