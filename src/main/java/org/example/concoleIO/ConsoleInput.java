@@ -9,35 +9,49 @@ import java.io.InputStreamReader;
 
 public class ConsoleInput {
 
-    public static Integer getPosition() {
+    public static int getPosition() {
         System.out.println(Messages.INPUT_POSITION.getMsg());
-        Integer position = null;
-        while (true){
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            String result = bufferedReader.readLine();
+        int position;
+        while (true) {
+            String result = inputToString();
             try {
                 correctInputOfPosition(result);
-                position = Integer.valueOf(result);
+                position = Integer.parseInt(result);
+                if (isNumberNotInRange(position)) {
+                    System.out.println(Messages.POSITION_EX.getMsg());
+                    continue;
+                }
                 break;
             } catch (PositionException e) {
                 System.out.println(e.getMessage());
             }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
-        }
-
         return position;
     }
 
+    public static boolean isNumberNotInRange(int number) {
+        if (number < 0 || number > 8) {
+            return true;
+        }
+        return false;
+    }
 
-    public static void correctInputOfPosition(String position) throws PositionException{
+    public static void correctInputOfPosition(String position) throws PositionException {
         try {
             Integer.valueOf(position);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new PositionException(Messages.POSITION_EX.getMsg());
         }
+    }
+
+    public static String inputToString() {
+        String result = null;
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            result = bufferedReader.readLine();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
 }

@@ -7,14 +7,17 @@ import org.example.exceptions.PositionException;
 
 public class Game {
 
-    public void run(){
+    public void run() {
 
         Player p1 = new Player(PositionsPlayer.X);
         Player p2 = new Player(PositionsPlayer.O);
 
-        while (Field.isEmptyField()){
+        while (Field.isEmptyField()) {
             p1.go(ConsoleInput.getPosition());
+            Field.isWin();
+            Field.viewField();
             p2.go(ConsoleInput.getPosition());
+            Field.isWin();
             Field.viewField();
         }
 
