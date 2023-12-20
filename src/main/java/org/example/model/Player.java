@@ -14,8 +14,8 @@ public class Player {
         return position;
     }
 
-    public void go(int position){
-        Field.inputPosition(position, this.getPosition());
+    public void go(){
+        Field.inputPosition(this.getPosition());
     }
 
 

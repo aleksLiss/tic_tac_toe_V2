@@ -1,26 +1,29 @@
 package org.example.model;
 
+import org.example.concoleIO.ConsoleInput;
 import org.example.exceptions.EmptyPositionException;
+
+import java.util.Arrays;
 
 public class Field {
     private static PositionsPlayer[] Field = new PositionsPlayer[9];
 
-    public static void inputPosition(int position, PositionsPlayer figure) {
+    public static void inputPosition(PositionsPlayer figure) {
 
         while (true) {
             try {
-                EmptyPosition(position);
-                Field[position] = figure;
+                int pos = ConsoleInput.getPosition();
+                EmptyPosition(pos);
+                Field[pos - 1] = figure;
                 break;
             } catch (EmptyPositionException e) {
                 System.out.println(e.getMessage());
-                break;
             }
         }
     }
 
     private static void EmptyPosition(int position) throws EmptyPositionException {
-        if (Field[position] != null) {
+        if (Field[position - 1] != null) {
             throw new EmptyPositionException(Messages.EMPTY_POSITION_EX.getMsg());
         }
     }
@@ -38,13 +41,13 @@ public class Field {
         int[][] arrOfWinsPositions = WinsPositions.WinsPositions;
         boolean flag = false;
         for (int i = 0; i < arrOfWinsPositions.length; i += 3) {
-            if (i < 9) {
-                if (isNullPosition(i, i + 1, i + 2)) {
-                    continue;
-                }
-                ;
+            if (isNullPosition(i, i + 1, i + 2)) {
+                continue;
+
             }
-            if (Field[i].equals(Field[i + 1]) && Field[i + 1].equals(Field[i + 2]) && Field[i + 2].equals(Field[i])) {
+            if (Field[i].equals(Field[i + 1])
+                    && Field[i + 1].equals(Field[i + 2])
+                    && Field[i + 2].equals(Field[i])) {
                 flag = true;
             }
         }

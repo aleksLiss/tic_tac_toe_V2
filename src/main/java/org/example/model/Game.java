@@ -11,17 +11,18 @@ public class Game {
 
         Player p1 = new Player(PositionsPlayer.X);
         Player p2 = new Player(PositionsPlayer.O);
+        System.out.println(Messages.START_MESSAGE.getMsg());
+        System.out.println(Messages.GET_OUT_OF_THE_GAME.getMsg());
+        while (Field.isEmptyField() && !Field.isWin()) {
+            p1.go();
+            Field.viewField();
+            Field.isWin();
+            p2.go();
+            Field.viewField();
+            Field.isWin();
 
-        while (Field.isEmptyField()) {
-            p1.go(ConsoleInput.getPosition());
-            Field.isWin();
-            Field.viewField();
-            p2.go(ConsoleInput.getPosition());
-            Field.isWin();
-            Field.viewField();
         }
 
     }
 
 }
-

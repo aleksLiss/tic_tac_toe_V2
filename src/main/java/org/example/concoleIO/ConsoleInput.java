@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 
 public class ConsoleInput {
 
+
+    //return -1 if user wanted go out of the game
     public static int getPosition() {
         System.out.println(Messages.INPUT_POSITION.getMsg());
         int position;
@@ -29,8 +31,15 @@ public class ConsoleInput {
         return position;
     }
 
-    public static boolean isNumberNotInRange(int number) {
-        if (number < 0 || number > 8) {
+    private static boolean isGetOutOfTheGame(String input){
+        if(input.equals("L") || input.equals("l")){
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isNumberNotInRange(int number) {
+        if (number < 1 || number > 9) {
             return true;
         }
         return false;
