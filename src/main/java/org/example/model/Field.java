@@ -13,6 +13,10 @@ public class Field {
         while (true) {
             try {
                 int pos = ConsoleInput.getPosition();
+                if (pos == -1){
+                    Game.stopOfTheGame();
+                    break;
+                }
                 EmptyPosition(pos);
                 Field[pos - 1] = figure;
                 break;

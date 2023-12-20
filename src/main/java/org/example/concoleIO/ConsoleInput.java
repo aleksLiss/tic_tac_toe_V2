@@ -16,6 +16,9 @@ public class ConsoleInput {
         int position;
         while (true) {
             String result = inputToString();
+            if(isGetOutOfTheGame(result)){
+                return -1;
+            }
             try {
                 correctInputOfPosition(result);
                 position = Integer.parseInt(result);
