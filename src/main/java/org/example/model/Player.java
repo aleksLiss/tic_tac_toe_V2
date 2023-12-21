@@ -1,8 +1,5 @@
 package org.example.model;
 
-import org.example.concoleIO.ConsoleInput;
-import org.example.exceptions.EmptyPositionException;
-
 public class Player {
     private final PositionsPlayer position;
 
@@ -15,7 +12,10 @@ public class Player {
     }
 
     public void go(){
-        Field.inputPosition(this.getPosition());
+        if (Game.getIsStopOfGame()){
+            Field.inputPosition(this.getPosition());
+        }
+
     }
 
 

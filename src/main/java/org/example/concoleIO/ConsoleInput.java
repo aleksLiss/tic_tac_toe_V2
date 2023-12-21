@@ -9,8 +9,6 @@ import java.io.InputStreamReader;
 
 public class ConsoleInput {
 
-
-    //return -1 if user wanted go out of the game
     public static int getPosition() {
         System.out.println(Messages.INPUT_POSITION.getMsg());
         int position;

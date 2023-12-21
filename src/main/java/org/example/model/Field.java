@@ -13,8 +13,9 @@ public class Field {
         while (true) {
             try {
                 int pos = ConsoleInput.getPosition();
-                if (pos == -1){
+                if (pos == -1) {
                     Game.stopOfTheGame();
+                    System.out.println(Messages.PLAYER_EXIT.getMsg());
                     break;
                 }
                 EmptyPosition(pos);
@@ -26,36 +27,36 @@ public class Field {
         }
     }
 
-    private static void EmptyPosition(int position) throws EmptyPositionException {
-        if (Field[position - 1] != null) {
-            throw new EmptyPositionException(Messages.EMPTY_POSITION_EX.getMsg());
-        }
-    }
-
-    public static boolean isEmptyField() {
-        for (PositionsPlayer pos : Field) {
-            if (pos == null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isWin() {
+    public static void isWin() {
         int[][] arrOfWinsPositions = WinsPositions.WinsPositions;
-        boolean flag = false;
         for (int i = 0; i < arrOfWinsPositions.length; i += 3) {
             if (isNullPosition(i, i + 1, i + 2)) {
                 continue;
-
             }
             if (Field[i].equals(Field[i + 1])
                     && Field[i + 1].equals(Field[i + 2])
                     && Field[i + 2].equals(Field[i])) {
+                Game.stopOfTheGame();
+            }
+        }
+    }
+
+    public static void isEmptyField() {
+        boolean flag = false;
+        for (PositionsPlayer pos : Field) {
+            if (pos == null) {
                 flag = true;
             }
         }
-        return flag;
+        if (!flag) {
+            Game.stopOfTheGame();
+        }
+    }
+
+    private static void EmptyPosition(int position) throws EmptyPositionException {
+        if (Field[position - 1] != null) {
+            throw new EmptyPositionException(Messages.EMPTY_POSITION_EX.getMsg());
+        }
     }
 
     private static boolean isNullPosition(int a, int b, int c) {
@@ -66,17 +67,20 @@ public class Field {
     }
 
     public static void viewField() {
-        int counter = 0;
-        System.out.println(Messages.LINE.getMsg());
-        for (PositionsPlayer s : Field) {
-            System.out.print("| " + s);
-            counter++;
-            if (counter % 3 == 0) {
-                System.out.print(" |");
-                System.out.println();
-                System.out.println(Messages.LINE.getMsg());
+        if (Game.getIsStopOfGame()) {
+            int counter = 0;
+            System.out.println(Messages.LINE.getMsg());
+            for (PositionsPlayer s : Field) {
+                System.out.print("| " + s);
+                counter++;
+                if (counter % 3 == 0) {
+                    System.out.print(" |");
+                    System.out.println();
+                    System.out.println(Messages.LINE.getMsg());
+                }
             }
         }
+
     }
 
 }

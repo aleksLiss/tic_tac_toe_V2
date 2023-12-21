@@ -1,17 +1,26 @@
 package org.example.model;
 
-import org.example.ConsoleRunner;
-import org.example.concoleIO.ConsoleInput;
-import org.example.exceptions.EmptyPositionException;
-import org.example.exceptions.PositionException;
-
 public class Game {
 
     private static boolean isStopOfGame = false;
 
-    public static void stopOfTheGame(){
-        System.out.println(Messages.PLAYER_EXIT.getMsg());
+    public Game() {
         isStopOfGame = true;
+    }
+
+    public static boolean getIsStopOfGame() {
+        return isStopOfGame;
+    }
+
+    public static void stopOfTheGame() {
+        isStopOfGame = false;
+    }
+
+    private static void cycleOfTheGame(Player player){
+        player.go();
+        Field.viewField();
+        Field.isWin();
+        Field.isEmptyField();
     }
 
     public void run() {
@@ -20,11 +29,9 @@ public class Game {
         Player p2 = new Player(PositionsPlayer.O);
         System.out.println(Messages.START_MESSAGE.getMsg());
         System.out.println(Messages.GET_OUT_OF_THE_GAME.getMsg());
-        while (Field.isEmptyField() && !Field.isWin() && !isStopOfGame) {
-            p1.go();
-            Field.viewField();
-            p2.go();
-            Field.viewField();
+        while (isStopOfGame) {
+            cycleOfTheGame(p1);
+            cycleOfTheGame(p2);
         }
 
     }
