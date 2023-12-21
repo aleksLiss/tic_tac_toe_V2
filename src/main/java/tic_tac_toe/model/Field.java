@@ -1,9 +1,7 @@
-package org.example.model;
+package tic_tac_toe.model;
 
-import org.example.concoleIO.ConsoleInput;
-import org.example.exceptions.EmptyPositionException;
-
-import java.util.Arrays;
+import tic_tac_toe.concoleIO.ConsoleInput;
+import tic_tac_toe.exceptions.EmptyPositionException;
 
 public class Field {
     private static PositionsPlayer[] Field = new PositionsPlayer[9];

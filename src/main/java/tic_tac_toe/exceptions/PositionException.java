@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package tic_tac_toe.exceptions;
 
 public class PositionException extends Exception{
 

@@ -1,7 +1,7 @@
-package org.example.concoleIO;
+package tic_tac_toe.concoleIO;
 
-import org.example.exceptions.PositionException;
-import org.example.model.Messages;
+import tic_tac_toe.exceptions.PositionException;
+import tic_tac_toe.model.Messages;
 
 import java.io.BufferedReader;
 import java.io.IOException;

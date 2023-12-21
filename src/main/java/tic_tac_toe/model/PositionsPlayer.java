@@ -1,4 +1,4 @@
-package org.example.model;
+package tic_tac_toe.model;
 
 public enum PositionsPlayer {
     X, //Player 1
